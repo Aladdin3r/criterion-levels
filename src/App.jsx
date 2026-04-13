@@ -83,7 +83,7 @@ export default function App() {
             <img
               src="/assets/logos/criterion-mark-white.png"
               alt="The Criterion Levels"
-              style={{ height: '28px', width: 'auto', opacity: 0.9 }}
+              style={{ height: '50px', width: 'auto', opacity: 0.9 }}
             />
           </a>
           <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
@@ -91,7 +91,7 @@ export default function App() {
               { href: '#about', label: 'About' },
               { href: '#location', label: 'Location' },
               { href: '#walkthrough', label: 'Walkthrough' },
-              { href: '#floorplans', label: 'Floors' },
+              { href: '#floorplans', label: 'Floor Plans' },
             ].map(({ href, label }) => (
               <a
                 key={href}
@@ -129,7 +129,7 @@ export default function App() {
               onMouseEnter={e => { e.currentTarget.style.background = '#E63022'; e.currentTarget.style.color = '#F5F0E8' }}
               onMouseLeave={e => { e.currentTarget.style.background = '#F5F0E8'; e.currentTarget.style.color = '#0A0A0A' }}
             >
-              Vote on Films →
+              Open the App →
             </a>
           </div>
         </nav>

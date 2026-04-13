@@ -181,7 +181,7 @@ export default function FloorPlans() {
             >
               {/* Full building image — always visible, dimmed */}
               <img
-                src="/assets/building-isometric.png"
+                src="/assets/theatre-rendering.png"
                 alt="Building overview"
                 style={{
                   width: '100%',
