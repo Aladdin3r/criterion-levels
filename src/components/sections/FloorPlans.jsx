@@ -6,12 +6,9 @@ const floorData = [
     label: 'F1',
     name: 'Entry to Cinema Culture',
     color: '#B8884A',
-    // Clip the isometric image to show floor 1 (bottom level)
-    // The 4-floor isometric is roughly: F4 top, F3 upper-mid, F2 lower-mid, F1 bottom
-    // Each floor occupies ~25% of the image height
-    clipTop: '75%',    // show only bottom 25%
+    clipTop: '76%',
     clipDesc: 'Ground floor — lobby, bar, merch, café',
-    highlightY: '80%', // label position within the image
+    highlightY: '86%',
     spaces: [
       { name: 'Check-in Kiosk', desc: 'App scan for access. Age verification. Wristband + physical ticket.' },
       { name: 'Movie Poster Display', desc: 'Rotating wall of Criterion-curated film posters.' },
@@ -27,9 +24,9 @@ const floorData = [
     label: 'F2',
     name: 'Cinema as Spectacle',
     color: '#4488FF',
-    clipTop: '50%',
+    clipTop: '57%',
     clipDesc: 'Second floor — video wall, bar, event space',
-    highlightY: '60%',
+    highlightY: '66%',
     spaces: [
       { name: 'Video Wall', desc: '4×3 grid of screens. Live feeds, experimental film, Criterion curations.' },
       { name: 'Main Theatre', desc: 'Open event floor. 100-person capacity. Standing and seating mixed.' },
@@ -44,9 +41,9 @@ const floorData = [
     label: 'F3',
     name: 'Cinema as Conversation',
     color: '#7FA99B',
-    clipTop: '25%',
+    clipTop: '38%',
     clipDesc: 'Third floor — cinema theatre + production studio',
-    highlightY: '38%',
+    highlightY: '47%',
     spaces: [
       { name: 'Cinema Theatre', desc: 'Traditional tiered seating, dedicated screen. Small group screenings.' },
       { name: 'Production Studio', desc: 'Immersive experience room — cameras, curved screen, drapes, mixing desk.' },
@@ -61,9 +58,9 @@ const floorData = [
     label: 'F4',
     name: 'Cinema as Ritual',
     color: '#9B7FA9',
-    clipTop: '0%',
+    clipTop: '18%',
     clipDesc: 'Top floor — private pods, phone lockbox, elevators',
-    highlightY: '12%',
+    highlightY: '27%',
     spaces: [
       { name: 'Phone Lockbox', desc: 'Mandatory at entry. No exceptions. The silence starts here.' },
       { name: 'Private Rooms ×3 (Rental)', desc: 'Rent your own film. 5-person max. Intimate, silent, yours.' },
@@ -76,7 +73,8 @@ const floorData = [
 ]
 
 // Height of each floor band in the isometric (percentage of total image)
-const FLOOR_BAND_HEIGHT = 25
+// New theatre-rendering.png: top ~18% is roof/storage, then 4 floors each ~19%
+const FLOOR_BAND_HEIGHT = 19
 
 export default function FloorPlans() {
   const [active, setActive] = useState(1)
@@ -204,7 +202,7 @@ export default function FloorPlans() {
                 }}
               >
                 <img
-                  src="/assets/building-isometric.png"
+                  src="/assets/theatre-rendering.png"
                   alt=""
                   aria-hidden
                   style={{
