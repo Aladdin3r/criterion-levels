@@ -17,8 +17,8 @@ export default function Floor4() {
 
       {/* ── LIGHTING ─────────────────────────────────────────────────── */}
       {/* Near-zero ambient — only pod screens and spotlights */}
-      <ambientLight intensity={0.55} color="#1A1008" />
-      <directionalLight position={[0, 10, 5]} intensity={0.8} color="#FFF0E0" />
+      <ambientLight intensity={2.0} color="#FFFFFF" />
+      <directionalLight position={[0, 8, 4]} intensity={1.8} color="#FFF8F0" />
 
       {/* Tight theatrical spotlight per pod — from ceiling */}
       {pods.map((pod, i) => (
@@ -48,37 +48,37 @@ export default function Floor4() {
       {/* Matte black floor — no reflections */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
         <planeGeometry args={[24, 16]} />
-        <meshStandardMaterial color="#222018" roughness={0.98} metalness={0.0} />
+        <meshStandardMaterial color="#3A3028" roughness={0.98} metalness={0.0} />
       </mesh>
 
       {/* Ceiling */}
       <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.8, 0]}>
         <planeGeometry args={[24, 16]} />
-        <meshStandardMaterial color="#1A1510" roughness={1} />
+        <meshStandardMaterial color="#2E2820" roughness={1} />
       </mesh>
 
       {/* Back wall */}
       <mesh position={[0, 2.9, -8]}>
         <boxGeometry args={[24, 5.8, 0.12]} />
-        <meshStandardMaterial color="#222018" roughness={1} metalness={0} />
+        <meshStandardMaterial color="#3A3028" roughness={1} metalness={0} />
       </mesh>
 
       {/* Front wall */}
       <mesh position={[0, 2.9, 8]}>
         <boxGeometry args={[24, 5.8, 0.12]} />
-        <meshStandardMaterial color="#222018" roughness={1} metalness={0} />
+        <meshStandardMaterial color="#3A3028" roughness={1} metalness={0} />
       </mesh>
 
       {/* Left wall */}
       <mesh position={[-12, 2.9, 0]}>
         <boxGeometry args={[0.12, 5.8, 16]} />
-        <meshStandardMaterial color="#222018" roughness={1} metalness={0} />
+        <meshStandardMaterial color="#3A3028" roughness={1} metalness={0} />
       </mesh>
 
       {/* Right wall */}
       <mesh position={[12, 2.9, 0]}>
         <boxGeometry args={[0.12, 5.8, 16]} />
-        <meshStandardMaterial color="#222018" roughness={1} metalness={0} />
+        <meshStandardMaterial color="#3A3028" roughness={1} metalness={0} />
       </mesh>
 
       {/* ── PRIVATE SCREENING POD ROOMS — LEFT SIDE ─────────────────── */}
@@ -90,38 +90,38 @@ export default function Floor4() {
           {/* Back wall */}
           <mesh position={[0, 2.25, -2.1]}>
             <boxGeometry args={[3.5, 4.5, 0.12]} />
-            <meshStandardMaterial color="#1E1A14" roughness={0.95} metalness={0} />
+            <meshStandardMaterial color="#3A3028" roughness={0.95} metalness={0} />
           </mesh>
           {/* Left side wall */}
           <mesh position={[-1.75, 2.25, 0]}>
             <boxGeometry args={[0.12, 4.5, 4.2]} />
-            <meshStandardMaterial color="#1E1A14" roughness={0.95} metalness={0} />
+            <meshStandardMaterial color="#3A3028" roughness={0.95} metalness={0} />
           </mesh>
           {/* Right side wall */}
           <mesh position={[1.75, 2.25, 0]}>
             <boxGeometry args={[0.12, 4.5, 4.2]} />
-            <meshStandardMaterial color="#1E1A14" roughness={0.95} metalness={0} />
+            <meshStandardMaterial color="#3A3028" roughness={0.95} metalness={0} />
           </mesh>
           {/* Roof/ceiling of pod */}
           <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 4.5, 0]}>
             <planeGeometry args={[3.5, 4.2]} />
-            <meshStandardMaterial color="#1A1510" roughness={1} />
+            <meshStandardMaterial color="#2E2820" roughness={1} />
           </mesh>
           {/* Front face — partial wall with opening */}
           {/* Left door jamb */}
           <mesh position={[-1.1, 2.25, 2.1]}>
             <boxGeometry args={[1.3, 4.5, 0.10]} />
-            <meshStandardMaterial color="#1E1A14" roughness={0.95} />
+            <meshStandardMaterial color="#3A3028" roughness={0.95} />
           </mesh>
           {/* Right door jamb */}
           <mesh position={[1.1, 2.25, 2.1]}>
             <boxGeometry args={[1.3, 4.5, 0.10]} />
-            <meshStandardMaterial color="#1E1A14" roughness={0.95} />
+            <meshStandardMaterial color="#3A3028" roughness={0.95} />
           </mesh>
           {/* Transom above doorway */}
           <mesh position={[0, 4.1, 2.1]}>
             <boxGeometry args={[3.5, 0.8, 0.10]} />
-            <meshStandardMaterial color="#1E1A14" roughness={0.95} />
+            <meshStandardMaterial color="#3A3028" roughness={0.95} />
           </mesh>
 
           {/* Pod floor LED base strip — front */}
@@ -172,11 +172,11 @@ export default function Floor4() {
           {/* Interior seating — simple chair */}
           <mesh position={[0, 0.46, 0.6]}>
             <boxGeometry args={[1.6, 0.06, 0.70]} />
-            <meshStandardMaterial color="#302820" roughness={0.85} />
+            <meshStandardMaterial color="#4A4035" roughness={0.85} />
           </mesh>
           <mesh position={[0, 0.78, 0.26]}>
             <boxGeometry args={[1.6, 0.64, 0.08]} />
-            <meshStandardMaterial color="#302820" roughness={0.85} />
+            <meshStandardMaterial color="#4A4035" roughness={0.85} />
           </mesh>
           {/* Chair red velvet accent */}
           <mesh position={[0, 0.50, 0.96]}>
@@ -196,11 +196,11 @@ export default function Floor4() {
         {/* Rack trim — top/bottom */}
         <mesh position={[0, 4.52, 0]}>
           <boxGeometry args={[1.55, 0.06, 0.85]} />
-          <meshStandardMaterial color="#1E1A14" roughness={0.30} metalness={0.60} />
+          <meshStandardMaterial color="#3A3028" roughness={0.30} metalness={0.60} />
         </mesh>
         <mesh position={[0, 0.04, 0]}>
           <boxGeometry args={[1.55, 0.06, 0.85]} />
-          <meshStandardMaterial color="#1E1A14" roughness={0.30} metalness={0.60} />
+          <meshStandardMaterial color="#3A3028" roughness={0.30} metalness={0.60} />
         </mesh>
         {/* Server rack panel slots — grid of emissive units */}
         {Array.from({ length: 8 }).map((_, row) =>
@@ -209,7 +209,7 @@ export default function Floor4() {
               {/* Slot bezel */}
               <mesh>
                 <boxGeometry args={[1.30, 0.38, 0.05]} />
-                <meshStandardMaterial color="#1E1A14" roughness={0.30} metalness={0.60} />
+                <meshStandardMaterial color="#3A3028" roughness={0.30} metalness={0.60} />
               </mesh>
               {/* Status screen */}
               <mesh position={[-0.35, 0, 0.04]}>
@@ -267,7 +267,7 @@ export default function Floor4() {
         <group key={i} position={[fig.x, 0, fig.z]}>
           <mesh position={[0, 0.9, 0]}>
             <boxGeometry args={[0.36, 1.6, 0.20]} />
-            <meshStandardMaterial color="#302820" roughness={0.9} />
+            <meshStandardMaterial color="#4A4035" roughness={0.9} />
           </mesh>
           <mesh position={[0, 1.88, 0]}>
             <sphereGeometry args={[0.17, 8, 8]} />
@@ -282,7 +282,7 @@ export default function Floor4() {
           {/* Shaft box */}
           <mesh position={[0, 2.9, 0]}>
             <boxGeometry args={[1.4, 5.8, 1.4]} />
-            <meshStandardMaterial color="#1A1510" roughness={0.70} metalness={0.30} />
+            <meshStandardMaterial color="#2E2820" roughness={0.70} metalness={0.30} />
           </mesh>
           {/* Door surface */}
           <mesh position={[0, 2.9, 0.72]}>
@@ -292,7 +292,7 @@ export default function Floor4() {
           {/* Door gap centre line */}
           <mesh position={[0, 2.9, 0.73]}>
             <boxGeometry args={[0.02, 5.0, 0.01]} />
-            <meshStandardMaterial color="#302820" roughness={0.5} />
+            <meshStandardMaterial color="#4A4035" roughness={0.5} />
           </mesh>
           {/* Floor indicator display */}
           <mesh position={[0.35, 4.6, 0.74]}>
@@ -317,7 +317,7 @@ export default function Floor4() {
         {[0, 1, 2, 3, 4, 5, 6, 7].map(step => (
           <mesh key={step} position={[0, step * 0.32 + 0.16, -step * 0.45]}>
             <boxGeometry args={[2.5, 0.32, 0.46]} />
-            <meshStandardMaterial color="#302820" roughness={0.85} />
+            <meshStandardMaterial color="#4A4035" roughness={0.85} />
           </mesh>
         ))}
         {[0, 1, 2, 3, 4, 5, 6, 7].map(step => (

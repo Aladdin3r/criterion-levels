@@ -17,43 +17,22 @@ export default function BuildingScene({
   onExitFreeRoam,
   isMobile,
 }) {
-  // In scroll mode, show only the relevant floor based on activeFloor
-  // This eliminates the overlap/z-fighting and cuts draw calls by 75%
-  const showExterior = activeFloor <= 0 || activeFloor === 1
-  const showFloor1 = activeFloor <= 1
-  const showFloor2 = activeFloor === 2
-  const showFloor3 = activeFloor === 3
-  const showFloor4 = activeFloor === 4
-
-  // In free roam, show only the active floor
-  const freeRoamFloor = mode === 'freeRoam' ? activeFloor : null
-
   return (
     <Canvas
-      camera={{ fov: 60, near: 0.1, far: 300, position: [0, 2, 14] }}
+      camera={{ fov: 60, near: 0.1, far: 300, position: [0, 4, 20] }}
       gl={{ antialias: false, alpha: false, powerPreference: 'high-performance' }}
       dpr={[1, 1.5]}
-      style={{ background: '#111008' }}
+      style={{ background: '#1A1208' }}
     >
       <Suspense fallback={null}>
-        {mode === 'scroll' && (
-          <>
-            {showExterior && <Exterior />}
-            {showFloor1 && <Floor1 />}
-            {showFloor2 && <Floor2 />}
-            {showFloor3 && <Floor3 />}
-            {showFloor4 && <Floor4 />}
-          </>
-        )}
-
-        {mode === 'freeRoam' && (
-          <>
-            {freeRoamFloor === 1 && <Floor1 />}
-            {freeRoamFloor === 2 && <Floor2 />}
-            {freeRoamFloor === 3 && <Floor3 />}
-            {freeRoamFloor === 4 && <Floor4 />}
-          </>
-        )}
+        {/* Show exterior when floor 0, or the specific floor otherwise */}
+        {activeFloor === 0 && <Exterior />}
+        {activeFloor === 1 && <Floor1 />}
+        {activeFloor === 2 && <Floor2 />}
+        {activeFloor === 3 && <Floor3 />}
+        {activeFloor === 4 && <Floor4 />}
+        {/* Default: show floor 1 if activeFloor hasn't been set yet */}
+        {!activeFloor && <Floor1 />}
       </Suspense>
 
       {mode === 'scroll' && !isMobile && (

@@ -24,8 +24,8 @@ export default function Floor2() {
     <group position={[0, 0, 0]}>
 
       {/* ── LIGHTING ─────────────────────────────────────────────────── */}
-      <ambientLight intensity={0.65} color="#100808" />
-      <directionalLight position={[0, 10, 5]} intensity={1.0} color="#C0D8FF" />
+      <ambientLight intensity={2.5} color="#FFFFFF" />
+      <directionalLight position={[0, 8, 4]} intensity={2.0} color="#FFFFFF" />
 
       {/* Video wall glow */}
       <pointLight position={[-7, 2.5, -2]} intensity={50} color="#C0D8FF" distance={18} decay={2} />
@@ -40,37 +40,37 @@ export default function Floor2() {
       {/* Polished dark floor */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
         <planeGeometry args={[24, 16]} />
-        <meshStandardMaterial color="#1E1A14" roughness={0.22} metalness={0.08} />
+        <meshStandardMaterial color="#3A3028" roughness={0.22} metalness={0.08} />
       </mesh>
 
       {/* Ceiling */}
       <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 6.0, 0]}>
         <planeGeometry args={[24, 16]} />
-        <meshStandardMaterial color="#1E1A14" roughness={1} />
+        <meshStandardMaterial color="#3A3028" roughness={1} />
       </mesh>
 
       {/* Back wall */}
       <mesh position={[0, 3.0, -8]}>
         <boxGeometry args={[24, 6, 0.12]} />
-        <meshStandardMaterial color="#2A2520" roughness={0.92} />
+        <meshStandardMaterial color="#4A4035" roughness={0.92} />
       </mesh>
 
       {/* Front wall */}
       <mesh position={[0, 3.0, 8]}>
         <boxGeometry args={[24, 6, 0.12]} />
-        <meshStandardMaterial color="#2E2820" roughness={0.90} />
+        <meshStandardMaterial color="#4A4035" roughness={0.90} />
       </mesh>
 
       {/* Left wall */}
       <mesh position={[-12, 3.0, 0]}>
         <boxGeometry args={[0.12, 6, 16]} />
-        <meshStandardMaterial color="#2E2820" roughness={0.90} />
+        <meshStandardMaterial color="#4A4035" roughness={0.90} />
       </mesh>
 
       {/* Right wall */}
       <mesh position={[12, 3.0, 0]}>
         <boxGeometry args={[0.12, 6, 16]} />
-        <meshStandardMaterial color="#2E2820" roughness={0.90} />
+        <meshStandardMaterial color="#4A4035" roughness={0.90} />
       </mesh>
 
       {/* ── LED STRIPS ───────────────────────────────────────────────── */}
@@ -124,7 +124,7 @@ export default function Floor2() {
       {/* Video wall backing structure */}
       <mesh position={[-7, 2.8, -5.8]}>
         <boxGeometry args={[5.2, 4.0, 0.18]} />
-        <meshStandardMaterial color="#1A1510" roughness={0.6} metalness={0.3} />
+        <meshStandardMaterial color="#2E2820" roughness={0.6} metalness={0.3} />
       </mesh>
       {/* 4 columns × 3 rows of screen panels */}
       {[0, 1, 2, 3].map(col =>
@@ -189,7 +189,7 @@ export default function Floor2() {
         {/* Back bar panel */}
         <mesh position={[0, 2.2, -0.62]}>
           <boxGeometry args={[6.5, 3.0, 0.08]} />
-          <meshStandardMaterial color="#1E1A14" roughness={0.9} />
+          <meshStandardMaterial color="#3A3028" roughness={0.9} />
         </mesh>
         {/* Back bar shelf */}
         <mesh position={[0, 1.8, -0.58]}>
@@ -238,7 +238,7 @@ export default function Floor2() {
       {/* Floor highlight strip for event zone */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[6, 0.01, 1]}>
         <planeGeometry args={[6, 8]} />
-        <meshStandardMaterial color="#222018" roughness={0.30} metalness={0.05} />
+        <meshStandardMaterial color="#3A3028" roughness={0.30} metalness={0.05} />
       </mesh>
 
       {/* Standing figures (simple box stand-ins) */}
@@ -251,7 +251,7 @@ export default function Floor2() {
         <group key={i} position={[fig.x, 0, fig.z]}>
           <mesh position={[0, 0.9, 0]}>
             <boxGeometry args={[0.38, 1.6, 0.22]} />
-            <meshStandardMaterial color="#302820" roughness={0.9} />
+            <meshStandardMaterial color="#4A4035" roughness={0.9} />
           </mesh>
           <mesh position={[0, 1.85, 0]}>
             <sphereGeometry args={[0.18, 8, 8]} />
@@ -264,7 +264,7 @@ export default function Floor2() {
       {/* Screen frame */}
       <mesh position={[8.5, 2.8, -7.85]}>
         <boxGeometry args={[6.0, 5.0, 0.14]} />
-        <meshStandardMaterial color="#1A1510" roughness={0.6} metalness={0.2} />
+        <meshStandardMaterial color="#2E2820" roughness={0.6} metalness={0.2} />
       </mesh>
       {/* Glowing screen */}
       <mesh position={[8.5, 2.8, -7.74]}>
@@ -291,7 +291,7 @@ export default function Floor2() {
         {[0, 1, 2, 3, 4, 5, 6, 7].map(step => (
           <mesh key={step} position={[0, step * 0.32 + 0.16, -step * 0.45]}>
             <boxGeometry args={[2.5, 0.32, 0.46]} />
-            <meshStandardMaterial color="#302820" roughness={0.85} />
+            <meshStandardMaterial color="#4A4035" roughness={0.85} />
           </mesh>
         ))}
         {/* Stair nosing amber strips */}
