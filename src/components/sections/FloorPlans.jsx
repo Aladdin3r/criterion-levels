@@ -6,49 +6,64 @@ const floorData = [
     label: 'F1',
     name: 'Entry to Cinema Culture',
     color: '#B8884A',
-    image: null,
+    // Clip the isometric image to show floor 1 (bottom level)
+    // The 4-floor isometric is roughly: F4 top, F3 upper-mid, F2 lower-mid, F1 bottom
+    // Each floor occupies ~25% of the image height
+    clipTop: '75%',    // show only bottom 25%
+    clipDesc: 'Ground floor — lobby, bar, merch, café',
+    highlightY: '80%', // label position within the image
     spaces: [
       { name: 'Check-in Kiosk', desc: 'App scan for access. Age verification. Wristband + physical ticket.' },
       { name: 'Movie Poster Display', desc: 'Rotating wall of Criterion-curated film posters.' },
       { name: 'Merch & DVD Wall', desc: 'Criterion editions, collectibles, and branded merchandise.' },
       { name: 'Standing Bar', desc: 'Drinks for wristband holders. Open during all screenings.' },
-      { name: 'Lounge', desc: 'Seating area. Social. Pre-film gathering space.' },
+      { name: 'Lounge + Café Tables', desc: 'Social seating area. Pre-film gathering space.' },
       { name: 'Leaderboards', desc: 'Live screening stats, top films, audience ratings.' },
     ],
+    viewingMode: 'Social · Open · Exploratory',
   },
   {
     id: 2,
     label: 'F2',
     name: 'Cinema as Spectacle',
     color: '#4488FF',
-    image: null,
+    clipTop: '50%',
+    clipDesc: 'Second floor — video wall, bar, event space',
+    highlightY: '60%',
     spaces: [
-      { name: 'Main Theatre', desc: '100-person capacity. Open standing and seating mixed.' },
+      { name: 'Video Wall', desc: '4×3 grid of screens. Live feeds, experimental film, Criterion curations.' },
+      { name: 'Main Theatre', desc: 'Open event floor. 100-person capacity. Standing and seating mixed.' },
       { name: 'Large Screen', desc: 'Full-width projection. High-output sound system.' },
-      { name: 'Prop Scene Recreation', desc: 'Monthly immersive set-dressing inspired by current feature. Currently: Babylon.' },
       { name: 'Bar Access', desc: 'Wristband-gated drinks service during screenings.' },
-      { name: 'Vending Machine', desc: 'Snacks and non-alcoholic options.' },
+      { name: 'Prop Scene Recreation', desc: 'Monthly immersive set-dressing inspired by current feature.' },
     ],
+    viewingMode: 'Loud · Social · Immersive',
   },
   {
     id: 3,
     label: 'F3',
     name: 'Cinema as Conversation',
     color: '#7FA99B',
-    image: null,
+    clipTop: '25%',
+    clipDesc: 'Third floor — cinema theatre + production studio',
+    highlightY: '38%',
     spaces: [
-      { name: 'Theatre Room', desc: 'Traditional seating, rows of seats, dedicated screen. Small group screenings.' },
-      { name: 'Rental Room ×2', desc: 'Bookable rooms. Curated film selection. 25-person max each.' },
+      { name: 'Cinema Theatre', desc: 'Traditional tiered seating, dedicated screen. Small group screenings.' },
+      { name: 'Production Studio', desc: 'Immersive experience room — cameras, curved screen, drapes, mixing desk.' },
+      { name: 'Rental Rooms ×2', desc: 'Bookable rooms. Curated film selection. 25-person max each.' },
       { name: '24/7 Channel', desc: 'Continuous loop screening. Always on. Rotating curation.' },
-      { name: 'Live Comment Wall', desc: 'In-app comments appear on side screens during screenings. Conversation as cinema.' },
+      { name: 'Live Comment Wall', desc: 'In-app comments appear on side screens during screenings.' },
     ],
+    viewingMode: 'Intimate · Interactive · Communal',
   },
   {
     id: 4,
     label: 'F4',
     name: 'Cinema as Ritual',
     color: '#9B7FA9',
-    image: null,
+    clipTop: '0%',
+    clipDesc: 'Top floor — private pods, phone lockbox, elevators',
+    highlightY: '12%',
     spaces: [
       { name: 'Phone Lockbox', desc: 'Mandatory at entry. No exceptions. The silence starts here.' },
       { name: 'Private Rooms ×3 (Rental)', desc: 'Rent your own film. 5-person max. Intimate, silent, yours.' },
@@ -56,8 +71,12 @@ const floorData = [
       { name: '24/7 Channel', desc: 'Continuous curated loop. Silent. Muted aesthetic.' },
       { name: 'Elevators ×2', desc: 'Access between floors. The transition ritual.' },
     ],
+    viewingMode: 'Silent · Private · Sacred',
   },
 ]
+
+// Height of each floor band in the isometric (percentage of total image)
+const FLOOR_BAND_HEIGHT = 25
 
 export default function FloorPlans() {
   const [active, setActive] = useState(1)
@@ -138,53 +157,134 @@ export default function FloorPlans() {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Sketch reference */}
-          <div>
-            <div
-              style={{
-                background: '#1A1A1A',
-                aspectRatio: '4/3',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: '1px solid rgba(245,240,232,0.06)',
-                position: 'relative',
-                overflow: 'hidden',
-              }}
-            >
-              <img
-                src={`/references-with-labels/000${floor.id - 1}_floor_${floor.id}.png`}
-                alt={`Floor ${floor.id} layout`}
-                style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'invert(1) brightness(0.4)', mixBlendMode: 'screen', padding: '2rem' }}
-                onError={e => { e.target.style.display = 'none' }}
-              />
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '1rem',
-                  left: '1rem',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: '0.6rem',
-                  letterSpacing: '0.12em',
-                  color: 'rgba(245,240,232,0.2)',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Layout reference · {floor.label}
-              </div>
-            </div>
 
             <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#111', border: '1px solid rgba(245,240,232,0.06)' }}>
               <div className="font-mono" style={{ fontSize: '0.6rem', letterSpacing: '0.12em', color: '#7FA99B', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
                 Viewing mode
               </div>
               <div className="font-display" style={{ fontSize: '1.1rem', color: '#F5F0E8' }}>
-                {['Social · Open · Exploratory', 'Loud · Social · Immersive', 'Intimate · Interactive · Communal', 'Silent · Private · Sacred'][floor.id - 1]}
+                {floor.viewingMode}
               </div>
             </div>
           </div>
+
+          {/* Right side — isometric building with floor highlight */}
+          <div>
+            {/* Full isometric building with highlight overlay */}
+            <div
+              style={{
+                position: 'relative',
+                background: '#0F0F0F',
+                border: '1px solid rgba(245,240,232,0.06)',
+                overflow: 'hidden',
+              }}
+            >
+              {/* Full building image — always visible, dimmed */}
+              <img
+                src="/assets/building-isometric.png"
+                alt="Building overview"
+                style={{
+                  width: '100%',
+                  display: 'block',
+                  filter: 'brightness(0.35)',
+                  transition: 'none',
+                }}
+              />
+
+              {/* Highlight overlay: only the active floor band is bright */}
+              {/* We clip the image to just show the active floor band at full brightness */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  overflow: 'hidden',
+                  // Clip to the floor band: each floor is 25% of height, F4 at top, F1 at bottom
+                  clipPath: `inset(${floor.clipTop} 0% ${100 - parseFloat(floor.clipTop) - FLOOR_BAND_HEIGHT}% 0%)`,
+                  transition: 'clip-path 0.4s ease',
+                }}
+              >
+                <img
+                  src="/assets/building-isometric.png"
+                  alt=""
+                  aria-hidden
+                  style={{
+                    width: '100%',
+                    display: 'block',
+                    filter: 'brightness(1.1)',
+                  }}
+                />
+              </div>
+
+              {/* Tinted colour band overlay for active floor */}
+              <div
+                style={{
+                  position: 'absolute',
+                  left: 0,
+                  right: 0,
+                  top: floor.clipTop,
+                  height: `${FLOOR_BAND_HEIGHT}%`,
+                  background: `${floor.color}18`,
+                  borderTop: `1px solid ${floor.color}55`,
+                  borderBottom: `1px solid ${floor.color}55`,
+                  transition: 'top 0.4s ease',
+                  pointerEvents: 'none',
+                }}
+              />
+
+              {/* Floor label badge */}
+              <div
+                style={{
+                  position: 'absolute',
+                  left: '1rem',
+                  top: `calc(${floor.clipTop} + 0.75rem)`,
+                  transition: 'top 0.4s ease',
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: '0.6rem',
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  color: floor.color,
+                  background: 'rgba(10,10,10,0.85)',
+                  padding: '0.3rem 0.6rem',
+                  border: `1px solid ${floor.color}66`,
+                }}
+              >
+                {floor.label} · {floor.clipDesc}
+              </div>
+
+              {/* Inactive floor labels — clickable */}
+              {floorData.filter(f => f.id !== active).map(f => (
+                <button
+                  key={f.id}
+                  onClick={() => setActive(f.id)}
+                  style={{
+                    position: 'absolute',
+                    left: '1rem',
+                    top: `calc(${f.clipTop} + 0.75rem)`,
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: '0.55rem',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: 'rgba(245,240,232,0.3)',
+                    background: 'rgba(10,10,10,0.6)',
+                    padding: '0.25rem 0.5rem',
+                    border: '1px solid rgba(245,240,232,0.1)',
+                    cursor: 'pointer',
+                    transition: 'color 0.2s',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.color = f.color }}
+                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(245,240,232,0.3)' }}
+                >
+                  {f.label} ↗
+                </button>
+              ))}
+            </div>
+
+            {/* Caption */}
+            <div style={{ marginTop: '1rem', fontFamily: 'JetBrains Mono', fontSize: '0.55rem', letterSpacing: '0.12em', color: 'rgba(245,240,232,0.2)', textTransform: 'uppercase' }}>
+              Click a floor label to explore · 4-level isometric overview
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

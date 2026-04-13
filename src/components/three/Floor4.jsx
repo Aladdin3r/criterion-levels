@@ -17,7 +17,8 @@ export default function Floor4() {
 
       {/* ── LIGHTING ─────────────────────────────────────────────────── */}
       {/* Near-zero ambient — only pod screens and spotlights */}
-      <ambientLight intensity={0.20} color="#0C0808" />
+      <ambientLight intensity={0.55} color="#1A1008" />
+      <directionalLight position={[0, 10, 5]} intensity={0.8} color="#FFF0E0" />
 
       {/* Tight theatrical spotlight per pod — from ceiling */}
       {pods.map((pod, i) => (
@@ -30,7 +31,7 @@ export default function Floor4() {
           color="#FFF0E0"
           distance={13}
           decay={2}
-          castShadow
+         
         />
       ))}
 
@@ -45,7 +46,7 @@ export default function Floor4() {
 
       {/* ── SHELL ────────────────────────────────────────────────────── */}
       {/* Matte black floor — no reflections */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
         <planeGeometry args={[24, 16]} />
         <meshStandardMaterial color="#0F0F0F" roughness={0.98} metalness={0.0} />
       </mesh>
@@ -188,7 +189,7 @@ export default function Floor4() {
       {/* ── EQUIPMENT SERVER RACK — CENTRE ───────────────────────────── */}
       <group position={[2, 0, -2]}>
         {/* Rack housing — tall narrow box */}
-        <mesh position={[0, 2.25, 0]} castShadow>
+        <mesh position={[0, 2.25, 0]}>
           <boxGeometry args={[1.5, 4.5, 0.8]} />
           <meshStandardMaterial color="#0A0A0A" roughness={0.55} metalness={0.40} />
         </mesh>
@@ -314,7 +315,7 @@ export default function Floor4() {
       {/* ── STAIRCASE — FAR RIGHT ────────────────────────────────────── */}
       <group position={[10, 0, 5]}>
         {[0, 1, 2, 3, 4, 5, 6, 7].map(step => (
-          <mesh key={step} position={[0, step * 0.32 + 0.16, -step * 0.45]} castShadow>
+          <mesh key={step} position={[0, step * 0.32 + 0.16, -step * 0.45]}>
             <boxGeometry args={[2.5, 0.32, 0.46]} />
             <meshStandardMaterial color="#1A1A1A" roughness={0.85} />
           </mesh>

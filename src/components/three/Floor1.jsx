@@ -44,30 +44,22 @@ export default function Floor1() {
     <group position={[0, 0, 0]}>
 
       {/* ── LIGHTING ─────────────────────────────────────────────────── */}
-      <ambientLight intensity={0.35} color="#201508" />
+      <ambientLight intensity={0.7} color="#2A1A08" />
+      <directionalLight position={[0, 10, 5]} intensity={1.2} color="#FFD4A0" />
 
-      {/* Ceiling recessed downlights */}
-      <pointLight position={[-8, 4.5, -2]} intensity={18} color="#FFD4A0" distance={10} decay={2} />
-      <pointLight position={[-2, 4.5,  0]} intensity={18} color="#FFD4A0" distance={10} decay={2} />
-      <pointLight position={[ 4, 4.5,  1]} intensity={16} color="#FFCC88" distance={10} decay={2} />
-      <pointLight position={[ 8, 4.5,  2]} intensity={16} color="#FFCC88" distance={10} decay={2} />
+      {/* Ceiling recessed downlights — reduced count, higher intensity */}
+      <pointLight position={[-4, 4.5, 0]} intensity={40} color="#FFD4A0" distance={16} decay={2} />
+      <pointLight position={[ 4, 4.5, 0]} intensity={40} color="#FFD4A0" distance={16} decay={2} />
 
       {/* Merch shelf backlight */}
-      <pointLight position={[0, 2.8, -7.2]} intensity={12} color="#CC8833" distance={8} decay={2} />
-
-      {/* Poster wall uplights */}
-      <pointLight position={[-10, 1.5, -7.2]} intensity={10} color="#FFCC88" distance={5} decay={2} />
-      <pointLight position={[-8,  1.5, -7.2]} intensity={10} color="#FFCC88" distance={5} decay={2} />
+      <pointLight position={[0, 2.8, -7.2]} intensity={20} color="#CC8833" distance={10} decay={2} />
 
       {/* Café area warm fill */}
-      <pointLight position={[7, 2.5, 1]} intensity={10} color="#FFD4A0" distance={8} decay={2} />
-
-      {/* Reception desk light */}
-      <pointLight position={[-7.5, 2.5, -3]} intensity={8} color="#FFD4A0" distance={6} decay={2} />
+      <pointLight position={[7, 2.5, 1]} intensity={20} color="#FFD4A0" distance={10} decay={2} />
 
       {/* ── SHELL ────────────────────────────────────────────────────── */}
       {/* Polished concrete floor */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
         <planeGeometry args={[24, 16]} />
         <meshStandardMaterial color="#111111" roughness={0.22} metalness={0.08} />
       </mesh>
@@ -135,7 +127,7 @@ export default function Floor1() {
       {/* ── RECEPTION DESK — FAR LEFT ────────────────────────────────── */}
       <group position={[-7.5, 0, -3.2]}>
         {/* Desk body */}
-        <mesh position={[0, 0.55, 0]} castShadow>
+        <mesh position={[0, 0.55, 0]}>
           <boxGeometry args={[4.0, 1.1, 1.0]} />
           <meshStandardMaterial color="#0F0C08" roughness={0.80} metalness={0.02} />
         </mesh>
@@ -187,7 +179,7 @@ export default function Floor1() {
       {/* ── DVD / MERCH SHELVING UNIT — CENTER ───────────────────────── */}
       <group position={[0, 0, -7.0]}>
         {/* Tall shelf unit body */}
-        <mesh position={[0, 2.0, 0]} castShadow>
+        <mesh position={[0, 2.0, 0]}>
           <boxGeometry args={[1.2, 4.0, 0.4]} />
           <meshStandardMaterial color="#0F0C08" roughness={0.80} metalness={0.02} />
         </mesh>
@@ -314,7 +306,7 @@ export default function Floor1() {
       {/* ── STAIRCASE — FAR RIGHT ────────────────────────────────────── */}
       <group position={[10, 0, 5]}>
         {[0, 1, 2, 3, 4, 5, 6, 7].map(step => (
-          <mesh key={step} position={[0, step * 0.32 + 0.16, -step * 0.45]} castShadow>
+          <mesh key={step} position={[0, step * 0.32 + 0.16, -step * 0.45]}>
             <boxGeometry args={[2.5, 0.32, 0.46]} />
             <meshStandardMaterial color="#2A1A0A" roughness={0.75} metalness={0.05} />
           </mesh>

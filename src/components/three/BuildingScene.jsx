@@ -27,12 +27,12 @@ export default function BuildingScene({
 }) {
   return (
     <Canvas
-      shadows
       camera={{ fov: 65, near: 0.1, far: 500, position: [0, 4, 22] }}
-      gl={{ antialias: true, alpha: false }}
+      gl={{ antialias: false, alpha: false, powerPreference: 'high-performance' }}
+      dpr={[1, 1.5]}
       style={{ background: '#0A0A0A' }}
     >
-      <fog attach="fog" args={['#0A0A0F', 40, 120]} />
+      <fog attach="fog" args={['#0A0A0F', 60, 160]} />
 
       <Suspense fallback={null}>
         {/* Always show exterior */}

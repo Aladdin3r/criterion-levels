@@ -208,7 +208,7 @@ function StudioSection() {
       {/* Mixing desk / control station */}
       <group position={[0, 0, 3.5]}>
         {/* Desk body — wide and low */}
-        <mesh position={[0, 0.45, 0]} castShadow>
+        <mesh position={[0, 0.45, 0]}>
           <boxGeometry args={[3.0, 0.9, 1.2]} />
           <meshStandardMaterial color="#0F0C08" roughness={0.80} metalness={0.02} />
         </mesh>
@@ -271,21 +271,18 @@ export default function Floor3() {
     <group position={[0, 0, 0]}>
 
       {/* ── LIGHTING ─────────────────────────────────────────────────── */}
-      <ambientLight intensity={0.28} color="#100A05" />
+      <ambientLight intensity={0.65} color="#100A05" />
+      <directionalLight position={[0, 10, 5]} intensity={1.0} color="#FFD4A0" />
 
-      {/* Theatre side downlights */}
-      <pointLight position={[-9, 4.8, -2]} intensity={6} color="#FFD4A0" distance={7} decay={2} />
-      <pointLight position={[-6, 4.8,  2]} intensity={5} color="#FFD4A0" distance={6} decay={2} />
-      <pointLight position={[-3, 4.8, -1]} intensity={5} color="#FFD4A0" distance={6} decay={2} />
+      {/* Theatre fill */}
+      <pointLight position={[-6, 4.8, 0]} intensity={40} color="#FFD4A0" distance={14} decay={2} />
 
-      {/* Studio side overhead */}
-      <pointLight position={[3, 4.8, -2]} intensity={5} color="#FFD4A0" distance={6} decay={2} />
-      <pointLight position={[7, 4.8,  2]} intensity={5} color="#FFCC88" distance={6} decay={2} />
-      <pointLight position={[9, 4.8, -1]} intensity={4} color="#FFCC88" distance={6} decay={2} />
+      {/* Studio fill */}
+      <pointLight position={[6, 4.8, 0]} intensity={40} color="#FFCC88" distance={14} decay={2} />
 
       {/* ── SHELL ────────────────────────────────────────────────────── */}
       {/* Polished floor */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
         <planeGeometry args={[24, 16]} />
         <meshStandardMaterial color="#0E0E0E" roughness={0.22} metalness={0.08} />
       </mesh>
@@ -360,7 +357,7 @@ export default function Floor3() {
       {/* ── STAIRCASE — FAR RIGHT ────────────────────────────────────── */}
       <group position={[10, 0, 5]}>
         {[0, 1, 2, 3, 4, 5, 6, 7].map(step => (
-          <mesh key={step} position={[0, step * 0.32 + 0.16, -step * 0.45]} castShadow>
+          <mesh key={step} position={[0, step * 0.32 + 0.16, -step * 0.45]}>
             <boxGeometry args={[2.5, 0.32, 0.46]} />
             <meshStandardMaterial color="#1A1A1A" roughness={0.85} />
           </mesh>

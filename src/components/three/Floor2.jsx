@@ -24,31 +24,21 @@ export default function Floor2() {
     <group position={[0, 0, 0]}>
 
       {/* ── LIGHTING ─────────────────────────────────────────────────── */}
-      <ambientLight intensity={0.25} color="#100808" />
+      <ambientLight intensity={0.65} color="#100808" />
+      <directionalLight position={[0, 10, 5]} intensity={1.0} color="#C0D8FF" />
 
-      {/* Video wall glow — cool blue-white fill */}
-      <pointLight position={[-7, 2.5, -2]} intensity={30} color="#C0D8FF" distance={16} decay={2} />
-      <pointLight position={[-7, 1.0, -1]} intensity={15} color="#A0C0FF" distance={12} decay={2} />
+      {/* Video wall glow */}
+      <pointLight position={[-7, 2.5, -2]} intensity={50} color="#C0D8FF" distance={18} decay={2} />
 
-      {/* Bar area warm fill */}
-      <pointLight position={[0, 3.0, 1]}  intensity={18} color="#FFD4A0" distance={11} decay={2} />
-      <pointLight position={[3, 3.0, -1]} intensity={12} color="#FFCC88" distance={10} decay={2} />
-
-      {/* Open event area */}
-      <pointLight position={[6, 4.0, 3]}  intensity={12} color="#FFD4A0" distance={10} decay={2} />
+      {/* Bar + event area fill */}
+      <pointLight position={[0, 4.0, 0]} intensity={40} color="#FFD4A0" distance={16} decay={2} />
 
       {/* Right wall screen glow */}
-      <pointLight position={[9, 2.5, -5]} intensity={18} color="#E8F0FF" distance={11} decay={2} />
-
-      {/* Side wall sconces */}
-      <pointLight position={[-10.5, 1.8, -2]} intensity={8} color="#CC8833" distance={7} decay={2} />
-      <pointLight position={[-10.5, 1.8,  3]} intensity={8} color="#CC8833" distance={7} decay={2} />
-      <pointLight position={[ 10.5, 1.8, -2]} intensity={8} color="#CC8833" distance={7} decay={2} />
-      <pointLight position={[ 10.5, 1.8,  3]} intensity={8} color="#CC8833" distance={7} decay={2} />
+      <pointLight position={[9, 2.5, -5]} intensity={30} color="#E8F0FF" distance={12} decay={2} />
 
       {/* ── SHELL ────────────────────────────────────────────────────── */}
       {/* Polished dark floor */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
         <planeGeometry args={[24, 16]} />
         <meshStandardMaterial color="#0E0E0E" roughness={0.22} metalness={0.08} />
       </mesh>
@@ -182,7 +172,7 @@ export default function Floor2() {
       {/* ── BAR COUNTER — CENTER, MARBLE TOP ────────────────────────── */}
       <group position={[0, 0, 1.0]}>
         {/* Counter body */}
-        <mesh position={[0, 0.55, 0]} castShadow>
+        <mesh position={[0, 0.55, 0]}>
           <boxGeometry args={[6.5, 1.1, 1.2]} />
           <meshStandardMaterial color="#0F0C08" roughness={0.80} metalness={0.02} />
         </mesh>
@@ -299,7 +289,7 @@ export default function Floor2() {
       {/* ── STAIRCASE — FAR RIGHT ────────────────────────────────────── */}
       <group position={[10, 0, 5]}>
         {[0, 1, 2, 3, 4, 5, 6, 7].map(step => (
-          <mesh key={step} position={[0, step * 0.32 + 0.16, -step * 0.45]} castShadow>
+          <mesh key={step} position={[0, step * 0.32 + 0.16, -step * 0.45]}>
             <boxGeometry args={[2.5, 0.32, 0.46]} />
             <meshStandardMaterial color="#1A1A1A" roughness={0.85} />
           </mesh>
