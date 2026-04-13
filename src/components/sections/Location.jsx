@@ -1,8 +1,8 @@
 export default function Location() {
   const photos = [
-    { src: '/assets/photos/exterior-full.jpg', label: 'Del Mar Inn · 553 · Downtown Vancouver', span: 2 },
-    { src: '/assets/photos/roofline.jpg', label: 'Copper patina roofline', span: 1 },
-    { src: '/assets/photos/facade-front.jpg', label: 'Original facade', span: 1 },
+    { src: '/assets/photos/photo-23.jpg', label: 'Del Mar Inn · 553 · Downtown Vancouver', span: 2 },
+    { src: '/assets/photos/irchike-12.jpg', label: 'Copper patina roofline', span: 1 },
+    { src: '/assets/photos/irchike-08.jpg', label: 'Original facade', span: 1 },
     { src: '/assets/photos/exterior-wide.jpg', label: 'Street view', span: 2 },
   ]
 

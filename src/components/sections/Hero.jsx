@@ -53,25 +53,25 @@ export default function Hero() {
           <img
             src="/assets/logos/criterion-lockup-white.png"
             alt="The Criterion Levels"
-            style={{ height: '48px', width: 'auto', opacity: 0.95 }}
+            style={{ height: '200px', width: 'auto', opacity: 0.95 }}
           />
         </div>
 
         <h1
           ref={headingRef}
           className="font-display"
-          style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', lineHeight: 1.05, letterSpacing: '-0.02em', color: '#FFFFFF', textShadow: '0 2px 24px rgba(0,0,0,0.5)' }}
+          style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', marginLeft: '1rem', lineHeight: 1.05, letterSpacing: '-0.02em', color: '#FFFFFF', textShadow: '0 2px 24px rgba(0,0,0,0.5)' }}
         >
           Not all movies should be<br />
           <em>watched the same way.</em>
         </h1>
 
-        <span className="divider-red" style={{ marginTop: '1.5rem', marginBottom: '1.5rem' }} />
+        <span className="divider-red" style={{ marginTop: '1.5rem', marginBottom: '1.5rem', marginLeft: '1rem' }} />
 
         <p
           ref={taglineRef}
           className="font-mono"
-          style={{ fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#9FCFC2' }}
+          style={{ fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#9FCFC2', marginLeft: '1rem' }}
         >
           Downtown Vancouver · Del Mar Inn · Four Floors · One Film Culture
         </p>
@@ -80,6 +80,7 @@ export default function Hero() {
           ref={introRef}
           style={{
             marginTop: '1.5rem',
+            marginLeft: '1rem',
             fontFamily: 'Inter, sans-serif',
             fontSize: '1.05rem',
             lineHeight: 1.75,
