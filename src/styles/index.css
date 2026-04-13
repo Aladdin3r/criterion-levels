@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  --color-black: #0A0A0A;
+  --color-white: #F5F0E8;
+  --color-red: #E63022;
+  --color-copper: #7FA99B;
+  --color-brick: #8B6E4E;
+  --color-grey-dark: #1A1A1A;
+  --color-grey-mid: #2A2A2A;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0A0A0A;
+  color: #F5F0E8;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #0A0A0A;
+  color: #F5F0E8;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0A0A0A; }
+::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 2px; }
+
+/* Selection */
+::selection { background: #E63022; color: #F5F0E8; }
+
+/* Fix vite default styles */
+#root { min-height: 100vh; }
+
+/* 3D canvas fixed behind everything */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.canvas-container.interactive {
+  pointer-events: all;
+}
+
+/* Content sits above canvas */
+.site-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* Section base */
+.section {
+  position: relative;
+  width: 100%;
+}
+
+/* Typography utilities */
+.font-display { font-family: 'Playfair Display', Georgia, serif; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+
+/* Fade-in animation for sections */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* Floor label pill */
+.floor-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7FA99B;
+  border: 1px solid #7FA99B44;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* Criterion red hairline divider */
+.divider-red {
+  width: 2rem;
+  height: 1px;
+  background: #E63022;
+  display: block;
+  margin: 1.5rem 0;
+}
+
+/* Pointer lock overlay */
+.pointer-lock-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(4px);
+}
+
+/* Crosshair */
+.crosshair {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 60;
+  pointer-events: none;
+  width: 16px;
+  height: 16px;
+}
+.crosshair::before,
+.crosshair::after {
+  content: '';
+  position: absolute;
+  background: rgba(245,240,232,0.6);
+}
+.crosshair::before {
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+}
+.crosshair::after {
+  height: 1px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+}
