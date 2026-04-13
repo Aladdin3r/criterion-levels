@@ -111,6 +111,26 @@ export default function App() {
                 {label}
               </a>
             ))}
+            <a
+              href="https://double-row-31076870.figma.site/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: 'JetBrains Mono',
+                fontSize: '0.65rem',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: '#0A0A0A',
+                background: '#F5F0E8',
+                padding: '0.45rem 1rem',
+                textDecoration: 'none',
+                transition: 'background 0.2s, color 0.2s',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#E63022'; e.currentTarget.style.color = '#F5F0E8' }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#F5F0E8'; e.currentTarget.style.color = '#0A0A0A' }}
+            >
+              Vote on Films →
+            </a>
           </div>
         </nav>
 

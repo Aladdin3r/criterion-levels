@@ -281,7 +281,7 @@ export default function Floor1() {
             const cx = Math.sin(angle) * 0.95
             const cz = Math.cos(angle) * 0.95
             return (
-              <group key={ci} position={[cx, 0, cz]} rotation={[0, -angle, 0]}>
+              <group key={ci} position={[cx, 0, cz]} rotation={[0, -angle + Math.PI, 0]}>
                 {/* Chair seat */}
                 <mesh position={[0, 0.45, 0]}>
                   <cylinderGeometry args={[0.24, 0.24, 0.06, 12]} />
