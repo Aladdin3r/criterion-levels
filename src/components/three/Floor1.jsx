@@ -61,19 +61,19 @@ export default function Floor1() {
       {/* Polished concrete floor */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
         <planeGeometry args={[24, 16]} />
-        <meshStandardMaterial color="#111111" roughness={0.22} metalness={0.08} />
+        <meshStandardMaterial color="#1E1A14" roughness={0.22} metalness={0.08} />
       </mesh>
 
       {/* Ceiling — matte black */}
       <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5, 0]}>
         <planeGeometry args={[24, 16]} />
-        <meshStandardMaterial color="#141414" roughness={1} />
+        <meshStandardMaterial color="#2A2520" roughness={1} />
       </mesh>
 
       {/* Back wall */}
       <mesh position={[0, 2.5, -8]}>
         <boxGeometry args={[24, 5, 0.12]} />
-        <meshStandardMaterial color="#1A1A1A" roughness={0.92} />
+        <meshStandardMaterial color="#302820" roughness={0.92} />
       </mesh>
 
       {/* Left wall */}
@@ -149,7 +149,7 @@ export default function Floor1() {
         {/* Staff figure (simple box stand-in) */}
         <mesh position={[0, 1.5, -0.3]}>
           <boxGeometry args={[0.4, 0.6, 0.2]} />
-          <meshStandardMaterial color="#1A1A1A" roughness={0.9} />
+          <meshStandardMaterial color="#302820" roughness={0.9} />
         </mesh>
         <mesh position={[0, 2.2, -0.3]}>
           <sphereGeometry args={[0.18, 8, 8]} />
@@ -163,7 +163,7 @@ export default function Floor1() {
       {/* ── TALL ARCHITECTURAL COLUMN — CENTER LEFT ──────────────────── */}
       <mesh position={[-3, 2.5, 1]}>
         <cylinderGeometry args={[0.35, 0.35, 5.0, 12]} />
-        <meshStandardMaterial color="#1A1A1A" roughness={0.85} metalness={0.05} />
+        <meshStandardMaterial color="#302820" roughness={0.85} metalness={0.05} />
       </mesh>
       {/* Column base cap */}
       <mesh position={[-3, 0.06, 1]}>

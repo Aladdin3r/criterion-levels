@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react'
+import { useRef, useEffect } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -6,22 +6,25 @@ import * as THREE from 'three'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Camera waypoints: position + target for each beat
+// All floors now render at Y=0 (only one at a time).
+// Waypoints are inside each floor — no Y offset needed.
 const WAYPOINTS = [
-  // 0 — Exterior approach (hero)
-  { pos: [0, 4, 22], target: [0, 6, 0] },
-  // 1 — Exterior close (location section)
-  { pos: [3, 7, 12], target: [-2, 8, 0] },
-  // 2 — Floor 1 entry (space overview)
-  { pos: [0, 1.6, 5], target: [0, 1.8, 0] },
-  // 3 — Floor 1 interior (walkthrough start)
-  { pos: [-4, 1.6, 1], target: [0, 1.8, -5] },
-  // 4 — Floor 2 (cinema as spectacle) — look straight at the screen
-  { pos: [0, 1.8, 4], target: [0, 2.0, -8] },
-  // 5 — Floor 3 (cinema as conversation) — look down the corridor
-  { pos: [0, 1.6, 5], target: [0, 1.8, -7] },
-  // 6 — Floor 4 (cinema as ritual)
-  { pos: [0, 1.6, 5], target: [0, 1.5, -3] },
+  // 0 — Exterior: camera out front looking at building facade
+  { pos: [0, 3, 18],   target: [0, 5, 0],    floor: 0 },
+  // 1 — Exterior close: angled view
+  { pos: [-4, 5, 10],  target: [0, 4, 0],    floor: 0 },
+  // 2 — Floor 1: standing in lobby looking toward merch/bar
+  { pos: [0, 1.7, 6],  target: [0, 1.8, -4], floor: 1 },
+  // 3 — Floor 1: panning left toward reception desk
+  { pos: [-5, 1.7, 2], target: [-2, 1.8, -6], floor: 1 },
+  // 4 — Floor 2: inside looking at video wall left side
+  { pos: [2, 1.8, 4],  target: [-6, 2.0, -4], floor: 2 },
+  // 5 — Floor 2: looking at back screen
+  { pos: [0, 1.8, 3],  target: [8, 2.0, -6],  floor: 2 },
+  // 6 — Floor 3: inside theatre half looking at screen
+  { pos: [-4, 1.8, 4], target: [-4, 2.0, -7], floor: 3 },
+  // 7 — Floor 4: looking into pods
+  { pos: [2, 1.8, 5],  target: [-5, 1.8, -1], floor: 4 },
 ]
 
 function lerp3(a, b, t) {
@@ -38,6 +41,11 @@ export default function ScrollCamera({ walkthroughRef, onFloorChange }) {
   const targetPosRef = useRef(new THREE.Vector3(...WAYPOINTS[0].pos))
   const targetLookRef = useRef(new THREE.Vector3(...WAYPOINTS[0].target))
 
+  // Set initial camera position immediately
+  useEffect(() => {
+    camera.position.set(...WAYPOINTS[0].pos)
+  }, [camera])
+
   useEffect(() => {
     if (!walkthroughRef?.current) return
 
@@ -45,13 +53,15 @@ export default function ScrollCamera({ walkthroughRef, onFloorChange }) {
       trigger: walkthroughRef.current,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 2,
+      scrub: 1,
       onUpdate: (self) => {
         progressRef.current = self.progress
 
-        // Determine which floor we're on for the overlay
-        const floor = Math.floor(self.progress * 4) + 1
-        onFloorChange?.(Math.min(floor, 4))
+        // Map progress to floor
+        const total = WAYPOINTS.length - 1
+        const idx = Math.min(Math.floor(self.progress * total), total - 1)
+        const wp = WAYPOINTS[idx]
+        onFloorChange?.(wp.floor > 0 ? wp.floor : 1)
       },
     })
 
@@ -61,29 +71,32 @@ export default function ScrollCamera({ walkthroughRef, onFloorChange }) {
   useFrame(() => {
     const p = progressRef.current
     const total = WAYPOINTS.length - 1
-    const idx = Math.min(Math.floor(p * total), total - 1)
-    const frac = (p * total) - idx
+    const rawIdx = p * total
+    const idx = Math.min(Math.floor(rawIdx), total - 1)
+    const frac = rawIdx - idx
 
-    const easedFrac = frac < 0.5
+    // Ease in-out
+    const t = frac < 0.5
       ? 2 * frac * frac
       : 1 - Math.pow(-2 * frac + 2, 2) / 2
 
     const wp0 = WAYPOINTS[idx]
-    const wp1 = WAYPOINTS[idx + 1] || WAYPOINTS[total]
+    const wp1 = WAYPOINTS[Math.min(idx + 1, total)]
 
-    const pos = lerp3(wp0.pos, wp1.pos, easedFrac)
-    const tgt = lerp3(wp0.target, wp1.target, easedFrac)
+    const pos = lerp3(wp0.pos, wp1.pos, t)
+    const tgt = lerp3(wp0.target, wp1.target, t)
 
     targetPosRef.current.set(...pos)
     targetLookRef.current.set(...tgt)
 
-    camera.position.lerp(targetPosRef.current, 0.06)
+    // Smooth follow
+    camera.position.lerp(targetPosRef.current, 0.08)
 
-    const currentLook = new THREE.Vector3()
-    camera.getWorldDirection(currentLook)
     const desiredLook = targetLookRef.current.clone().sub(camera.position).normalize()
-    const smoothLook = currentLook.lerp(desiredLook, 0.06)
-    camera.lookAt(camera.position.clone().add(smoothLook))
+    const currentDir = new THREE.Vector3()
+    camera.getWorldDirection(currentDir)
+    const smoothDir = currentDir.lerp(desiredLook, 0.08)
+    camera.lookAt(camera.position.clone().add(smoothDir))
   })
 
   return null

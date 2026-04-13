@@ -9,14 +9,6 @@ import Floor4 from './Floor4'
 import ScrollCamera from './ScrollCamera'
 import FreeRoamCamera from './FreeRoamCamera'
 
-const FLOOR_OFFSETS = {
-  exterior: [0, 0, 0],
-  1: [0, 0, 0],
-  2: [0, 12, 0],
-  3: [0, 24, 0],
-  4: [0, 36, 0],
-}
-
 export default function BuildingScene({
   mode,
   activeFloor,
@@ -25,37 +17,45 @@ export default function BuildingScene({
   onExitFreeRoam,
   isMobile,
 }) {
+  // In scroll mode, show only the relevant floor based on activeFloor
+  // This eliminates the overlap/z-fighting and cuts draw calls by 75%
+  const showExterior = activeFloor <= 0 || activeFloor === 1
+  const showFloor1 = activeFloor <= 1
+  const showFloor2 = activeFloor === 2
+  const showFloor3 = activeFloor === 3
+  const showFloor4 = activeFloor === 4
+
+  // In free roam, show only the active floor
+  const freeRoamFloor = mode === 'freeRoam' ? activeFloor : null
+
   return (
     <Canvas
-      camera={{ fov: 65, near: 0.1, far: 500, position: [0, 4, 22] }}
+      camera={{ fov: 60, near: 0.1, far: 300, position: [0, 2, 14] }}
       gl={{ antialias: false, alpha: false, powerPreference: 'high-performance' }}
       dpr={[1, 1.5]}
-      style={{ background: '#0A0A0A' }}
+      style={{ background: '#111008' }}
     >
-      <fog attach="fog" args={['#0A0A0F', 60, 160]} />
-
       <Suspense fallback={null}>
-        {/* Always show exterior */}
-        <group position={FLOOR_OFFSETS.exterior}>
-          <Exterior />
-        </group>
+        {mode === 'scroll' && (
+          <>
+            {showExterior && <Exterior />}
+            {showFloor1 && <Floor1 />}
+            {showFloor2 && <Floor2 />}
+            {showFloor3 && <Floor3 />}
+            {showFloor4 && <Floor4 />}
+          </>
+        )}
 
-        {/* All floors stacked vertically — camera moves between them */}
-        <group position={FLOOR_OFFSETS[1]}>
-          <Floor1 />
-        </group>
-        <group position={FLOOR_OFFSETS[2]}>
-          <Floor2 />
-        </group>
-        <group position={FLOOR_OFFSETS[3]}>
-          <Floor3 />
-        </group>
-        <group position={FLOOR_OFFSETS[4]}>
-          <Floor4 />
-        </group>
+        {mode === 'freeRoam' && (
+          <>
+            {freeRoamFloor === 1 && <Floor1 />}
+            {freeRoamFloor === 2 && <Floor2 />}
+            {freeRoamFloor === 3 && <Floor3 />}
+            {freeRoamFloor === 4 && <Floor4 />}
+          </>
+        )}
       </Suspense>
 
-      {/* Camera control — scroll or free roam */}
       {mode === 'scroll' && !isMobile && (
         <ScrollCamera
           walkthroughRef={walkthroughRef}
@@ -75,7 +75,7 @@ export default function BuildingScene({
           enablePan={false}
           minDistance={5}
           maxDistance={30}
-          target={[0, 3, 0]}
+          target={[0, 2, 0]}
         />
       )}
     </Canvas>

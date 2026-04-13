@@ -15,7 +15,7 @@ function TheatreSection() {
       {/* Screen wall */}
       <mesh position={[0, 2.6, -7.8]}>
         <boxGeometry args={[11.5, 5.2, 0.12]} />
-        <meshStandardMaterial color="#141414" roughness={0.92} />
+        <meshStandardMaterial color="#2A2520" roughness={0.92} />
       </mesh>
 
       {/* Glowing cinema screen */}
@@ -68,7 +68,7 @@ function TheatreSection() {
                 {/* Base frame */}
                 <mesh position={[0, 0.12, 0]}>
                   <boxGeometry args={[0.76, 0.22, 0.50]} />
-                  <meshStandardMaterial color="#181818" roughness={0.85} />
+                  <meshStandardMaterial color="#2E2820" roughness={0.85} />
                 </mesh>
                 {/* Armrest */}
                 <mesh position={[0.38, 0.36, 0.04]}>
@@ -98,7 +98,7 @@ function StudioSection() {
       {/* Studio back wall — large curved/abstract screen */}
       <mesh position={[0, 2.6, -7.8]}>
         <boxGeometry args={[11.5, 5.2, 0.12]} />
-        <meshStandardMaterial color="#141414" roughness={0.92} />
+        <meshStandardMaterial color="#2A2520" roughness={0.92} />
       </mesh>
       {/* Main curved screen — large emissive blue/teal */}
       <mesh position={[0, 2.7, -7.66]}>
@@ -157,12 +157,12 @@ function StudioSection() {
           {/* Drop cable */}
           <mesh position={[0, 0.22, 0]}>
             <cylinderGeometry args={[0.015, 0.015, 0.44, 4]} />
-            <meshStandardMaterial color="#1A1A1A" roughness={0.5} />
+            <meshStandardMaterial color="#302820" roughness={0.5} />
           </mesh>
           {/* Light cone body */}
           <mesh position={[0, 0, 0]}>
             <coneGeometry args={[0.14, 0.28, 8]} />
-            <meshStandardMaterial color="#1A1A1A" roughness={0.5} metalness={0.3} />
+            <meshStandardMaterial color="#302820" roughness={0.5} metalness={0.3} />
           </mesh>
           {/* Emissive bulb */}
           <mesh position={[0, -0.14, 0]}>
@@ -184,7 +184,7 @@ function StudioSection() {
             <mesh key={li} position={[lx, 0.65, li === 1 ? -0.28 : 0.12]}
               rotation={[li === 1 ? 0.25 : -0.15, 0, lx === 0 ? 0 : lx > 0 ? 0.18 : -0.18]}>
               <boxGeometry args={[0.03, 1.3, 0.03]} />
-              <meshStandardMaterial color="#1A1A1A" roughness={0.5} metalness={0.5} />
+              <meshStandardMaterial color="#302820" roughness={0.5} metalness={0.5} />
             </mesh>
           ))}
           {/* Camera body */}
@@ -195,7 +195,7 @@ function StudioSection() {
           {/* Lens */}
           <mesh position={[0, 1.45, -0.28]} rotation={[Math.PI / 2, 0, 0]}>
             <cylinderGeometry args={[0.08, 0.10, 0.30, 12]} />
-            <meshStandardMaterial color="#111111" roughness={0.3} metalness={0.6} />
+            <meshStandardMaterial color="#1E1A14" roughness={0.3} metalness={0.6} />
           </mesh>
           {/* Viewfinder */}
           <mesh position={[0, 1.60, 0.12]}>
@@ -284,31 +284,31 @@ export default function Floor3() {
       {/* Polished floor */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
         <planeGeometry args={[24, 16]} />
-        <meshStandardMaterial color="#0E0E0E" roughness={0.22} metalness={0.08} />
+        <meshStandardMaterial color="#1E1A14" roughness={0.22} metalness={0.08} />
       </mesh>
 
       {/* Ceiling */}
       <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 5.2, 0]}>
         <planeGeometry args={[24, 16]} />
-        <meshStandardMaterial color="#111111" roughness={1} />
+        <meshStandardMaterial color="#1E1A14" roughness={1} />
       </mesh>
 
       {/* Left wall */}
       <mesh position={[-12, 2.6, 0]}>
         <boxGeometry args={[0.12, 5.2, 16]} />
-        <meshStandardMaterial color="#181818" roughness={0.90} />
+        <meshStandardMaterial color="#2E2820" roughness={0.90} />
       </mesh>
 
       {/* Right wall */}
       <mesh position={[12, 2.6, 0]}>
         <boxGeometry args={[0.12, 5.2, 16]} />
-        <meshStandardMaterial color="#181818" roughness={0.90} />
+        <meshStandardMaterial color="#2E2820" roughness={0.90} />
       </mesh>
 
       {/* Front wall */}
       <mesh position={[0, 2.6, 8]}>
         <boxGeometry args={[24, 5.2, 0.12]} />
-        <meshStandardMaterial color="#141414" roughness={0.92} />
+        <meshStandardMaterial color="#2A2520" roughness={0.92} />
       </mesh>
 
       {/* ── LED STRIPS ───────────────────────────────────────────────── */}
@@ -336,7 +336,7 @@ export default function Floor3() {
       {/* ── DIVIDING WALL — CENTRE PARTITION ────────────────────────── */}
       <mesh position={[0, 2.5, -2]}>
         <boxGeometry args={[0.20, 5.0, 12.0]} />
-        <meshStandardMaterial color="#1A1A1A" roughness={0.88} />
+        <meshStandardMaterial color="#302820" roughness={0.88} />
       </mesh>
       {/* Partition amber strip — both sides */}
       <mesh position={[-0.11, 0.02, -2]}>
@@ -359,7 +359,7 @@ export default function Floor3() {
         {[0, 1, 2, 3, 4, 5, 6, 7].map(step => (
           <mesh key={step} position={[0, step * 0.32 + 0.16, -step * 0.45]}>
             <boxGeometry args={[2.5, 0.32, 0.46]} />
-            <meshStandardMaterial color="#1A1A1A" roughness={0.85} />
+            <meshStandardMaterial color="#302820" roughness={0.85} />
           </mesh>
         ))}
         {[0, 1, 2, 3, 4, 5, 6, 7].map(step => (

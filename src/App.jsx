@@ -19,7 +19,9 @@ export default function App() {
 
   const handleFloorChange = useCallback((floor) => {
     setCurrentBeat(floor)
-  }, [])
+    // Also update activeFloor so BuildingScene shows the correct floor geometry
+    if (floor > 0) setActiveFloor(floor)
+  }, [setActiveFloor])
 
   const handleEnterFreeRoam = useCallback((floor) => {
     if (!floor) {
